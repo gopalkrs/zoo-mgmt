@@ -48,14 +48,14 @@ export const sidebarData: SidebarData = {
       plan: "Startup",
     },
   ],
-  
+
   navGroups: [
     {
       title: "General",
       items: [
         {
           title: "Dashboard",
-          url: "/",
+          url: "/dashboard",
           icon: LayoutDashboard,
         },
         {

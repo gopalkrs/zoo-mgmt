@@ -3,6 +3,7 @@
 
 @custom-variant dark (&:is(.dark *));
 
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -119,4 +120,27 @@
   body {
     @apply bg-background text-foreground;
   }
+
+  body {
+    @apply overscroll-none bg-transparent;
+  }
+}
+
+@layer utilities {
+  [data-slot="scroll-area-scrollbar"] {
+    @apply opacity-0 transition-opacity duration-200;
+  }
+
+  [data-slot="scroll-area"]:hover [data-slot="scroll-area-scrollbar"] {
+    @apply opacity-100;
+  }
+}
+
+[data-radix-scroll-area-scrollbar] {
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+[data-radix-scroll-area-root]:hover [data-radix-scroll-area-scrollbar] {
+  opacity: 1;
 }
