@@ -8,6 +8,7 @@ import { CareTaker } from "@/types";
  * Provides methods to create, fetch, and update CareTakers in the database.
  */
 export class CareTakerService {
+
   /**
    * Create a new CareTaker
    *
@@ -42,7 +43,12 @@ export class CareTakerService {
    * @param params - CareTaker object containing updated fields
    * @returns {Promise<CareTaker | null>} The updated CareTaker document
    */
-  // static async updateCareTakerById(params: CareTaker): Promise<CareTaker | null> {
-  //   return null;
-  // }
+  static async updateCareTakerById(params: CareTaker): Promise<CareTaker | null> {
+    const { id, ...updateData } = params;
+    console.log("[updateCareTakerById] params: ", { id, updateData });
+    const result = await careTakerModel.findByIdAndUpdate(params.id, { ...updateData });
+    console.log("[updateCareTakerById] result: ", result);
+    return result;
+  }
+
 }
