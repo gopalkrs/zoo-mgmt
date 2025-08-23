@@ -2,20 +2,19 @@
 import axios from "axios"
 import { Button } from "@/components/ui/button"
 import React, { useEffect } from "react"
+import { getAnimals } from "@/store/animals-api"
 
 const page = () => {
-  const fetchAnimals = async () => {
-    const res = await axios.get("/api/animals")
-    console.log(res)
-  }
+  const { data: animals, isLoading, error } = getAnimals()
 
-  useEffect(() => {
-    fetchAnimals()
-  }, [])
+  console.log("animals ==>", animals?.result)
+
+  if (isLoading) return <div>Loading...</div>
+  if (error) return <div>Error loading animals</div>
 
   return (
     <div>
-      <Button>Hello</Button>
+      <Button>animals</Button>
     </div>
   )
 }

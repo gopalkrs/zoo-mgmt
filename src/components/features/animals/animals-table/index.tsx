@@ -17,10 +17,16 @@ export function AnimalTable<TData, TValue>({
   totalItems,
   columns,
 }: ProductTableParams<TData, TValue>) {
+  console.log("columns index =============>")
+  console.log("data ==>", data)
+  console.log("totalItems ==>", totalItems)
+  console.log("columns ==>", columns)
   const [pageSize] = useQueryState("perPage", parseAsInteger.withDefault(10))
 
   const pageCount = Math.ceil(totalItems / pageSize)
-
+  console.log("data ==>", data)
+  console.log("totalItems ==>", totalItems)
+  console.log("pageSize ==>", pageSize)
   const { table } = useDataTable({
     data, // product data
     columns, // product columns
@@ -28,6 +34,8 @@ export function AnimalTable<TData, TValue>({
     shallow: false, //Setting to false triggers a network request with the updated querystring.
     debounceMs: 500,
   })
+
+  console.log("table ==>", table)
 
   return (
     <DataTable table={table}>

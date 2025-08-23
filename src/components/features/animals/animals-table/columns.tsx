@@ -1,51 +1,32 @@
 "use client"
 import { Badge } from "@/components/ui/badge"
-import { DataTableColumnHeader } from "@/components/ui/table/data-table-column-header"
 
 import { Column, ColumnDef } from "@tanstack/react-table"
-import { CheckCircle2, Text, XCircle } from "lucide-react"
-import Image from "next/image"
-// import { CellAction } from "./cell-action"
+import { CheckCircle2, XCircle } from "lucide-react"
+
 import { Animal } from "@/types"
 
 export const columns: ColumnDef<Animal>[] = [
   {
-    accessorKey: "photo_url",
-    header: "IMAGE",
-    cell: ({ row }) => {
-      return (
-        <div className="relative aspect-square">
-          <Image
-            src={row.getValue("photo_url")}
-            alt={row.getValue("name")}
-            fill
-            className="rounded-lg"
-          />
-        </div>
-      )
-    },
-  },
-  {
     id: "name",
     accessorKey: "name",
-    header: ({ column }: { column: Column<Animal, unknown> }) => (
-      <DataTableColumnHeader column={column} title="Name" />
-    ),
-    cell: ({ cell }) => <div>{cell.getValue<Animal["name"]>()}</div>,
-    meta: {
-      label: "Name",
-      placeholder: "Search products...",
-      variant: "text",
-      icon: Text,
+    // header: ({ column }: { column: Column<Animal, unknown> }) => (
+    //   <DataTableColumnHeader column={column} title="Name" />
+    // ),
+    header: "Name",
+    cell: ({ cell }) => {
+      const value = cell.getValue<Animal["name"]>()
+      console.log("Name Cell -> input:", cell, "output:", value)
+      return <div>{value}</div>
     },
-    enableColumnFilter: true,
   },
   {
     id: "category",
     accessorKey: "category",
-    header: ({ column }: { column: Column<Animal, unknown> }) => (
-      <DataTableColumnHeader column={column} title="Category" />
-    ),
+    // header: ({ column }: { column: Column<Animal, unknown> }) => (
+    //   <DataTableColumnHeader column={column} title="Category" />
+    // ),
+    header: "Category",
     cell: ({ cell }) => {
       const status = cell.getValue<Animal["category"]>()
       const Icon = status === "land" ? CheckCircle2 : XCircle
@@ -57,19 +38,6 @@ export const columns: ColumnDef<Animal>[] = [
         </Badge>
       )
     },
-    enableColumnFilter: true,
+    // enableColumnFilter: true,
   },
-  {
-    accessorKey: "price",
-    header: "PRICE",
-  },
-  {
-    accessorKey: "description",
-    header: "DESCRIPTION",
-  },
-
-  // {
-  //   id: "actions",
-  //   cell: ({ row }) => <CellAction data={row.original} />,
-  // },
 ]
