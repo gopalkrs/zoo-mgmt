@@ -16,7 +16,6 @@ import { LayoutProvider } from "@/context/layout-provider"
 import { sidebarData } from "@/components/layout/data/sidebar-data"
 import { NavGroup } from "@/components/layout/nav-group"
 import { Header } from "@/components/layout/header"
-import { ThemeSwitch } from "@/components/theme-switch"
 import { ThemeProvider } from "@/context/theme-provider"
 import Link from "next/link"
 import { PawPrint } from "lucide-react"
@@ -71,14 +70,8 @@ export default function RootLayout({
                   <SidebarRail />
                 </AppSidebar>
                 <div className="flex flex-col flex-1 w-full">
-                  <Header>
-                    <div className="flex w-full items-center justify-between">
-                      <div>Welcome</div>
-                      <div className="flex items-center space-x-4">
-                        <ThemeSwitch />
-                      </div>
-                    </div>
-                  </Header>
+                  <Header />
+
                   <main className="flex-1">{children}</main>
                 </div>
               </div>
