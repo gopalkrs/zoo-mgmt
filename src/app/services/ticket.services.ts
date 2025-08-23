@@ -1,4 +1,4 @@
-import ticketModel from "@/models/ticket.model";
+import { TicketModel } from "@/models";
 import { TicketDocument, TicketInput } from "@/types/ticket";
 
 export class TicketService {
@@ -8,7 +8,7 @@ export class TicketService {
    * @returns {Promise<TicketDocument>} The created ticket document
    */
   async bookTicket(ticketData: TicketInput): Promise<TicketDocument> {
-    const result = await ticketModel.create(ticketData);
+    const result = await TicketModel.create(ticketData);
     console.log("[bookTicket] result:", result);
     return result;
   }
@@ -18,7 +18,7 @@ export class TicketService {
    * @returns {Promise<TicketDocument []>} Array of all ticket booked
    */
   async getTickets(): Promise<TicketDocument[]> {
-    const tickets = await ticketModel.find();
+    const tickets = await TicketModel.find();
     return tickets;
   }
 
@@ -28,7 +28,7 @@ export class TicketService {
    * @returns {Promise<TicketDocument []>} Array of all ticket booked on the given date
    */
   async getTicketsByVisitDate(dateOfVisit: Date): Promise<TicketDocument[]> {
-    const ticketListForDate = await ticketModel.find({
+    const ticketListForDate = await TicketModel.find({
       dateOfVisit: dateOfVisit,
     });
     return ticketListForDate;
