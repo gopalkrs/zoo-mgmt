@@ -1,0 +1,48 @@
+import { careTakerModel } from "@/models";
+import { CareTaker } from "@/types";
+
+/**
+ * CareTakerService
+ *
+ * Service layer responsible for handling CareTaker-related operations.
+ * Provides methods to create, fetch, and update CareTakers in the database.
+ */
+export class CareTakerService {
+  /**
+   * Create a new CareTaker
+   *
+   * @param params - CareTaker object containing required fields
+   * @returns {Promise<CareTaker | null>} The newly created CareTaker document
+   */
+  static async createCareTaker(params: CareTaker): Promise<CareTaker | null> {
+    const { name } = params;
+    console.log("[createCareTaker] params:", { name });
+
+    const result = await careTakerModel.create({ name });
+    console.log("[createCareTaker] result:", result);
+
+    return result;
+  }
+
+  /**
+   * Fetch all CareTakers
+   *
+   * @returns {Promise<CareTaker[] | null>} Array of CareTaker documents
+   */
+  static async getAllCareTakers(): Promise<CareTaker[] | null> {
+    const result = await careTakerModel.find();
+    console.log("[getAllCareTakers] result:", result);
+
+    return result;
+  }
+
+  /**
+   * Update a CareTaker by ID
+   *
+   * @param params - CareTaker object containing updated fields
+   * @returns {Promise<CareTaker | null>} The updated CareTaker document
+   */
+  // static async updateCareTakerById(params: CareTaker): Promise<CareTaker | null> {
+  //   return null;
+  // }
+}

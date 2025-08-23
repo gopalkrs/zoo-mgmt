@@ -13,7 +13,6 @@ export async function POST(req: Request): Promise<Response> {
   try {
     const body = await req.json();
 
-    // Calls service layer to create new animal
     const result = await AnimalService.createAnimal(body);
 
     return Response.json({ success: true, result });
