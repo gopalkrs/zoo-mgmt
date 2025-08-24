@@ -1,34 +1,35 @@
-"use client"
+"use client";
 // import type { Metadata } from "next"
-import { Geist, Geist_Mono } from "next/font/google"
-import "./globals.css"
-import { AppSidebar } from "@/components/layout/app-sidebar"
+import { Geist, Geist_Mono } from "next/font/google";
+import "./globals.css";
+import { AppSidebar } from "@/components/layout/app-sidebar";
 import {
   SidebarContent,
   SidebarFooter,
   SidebarHeader,
   SidebarProvider,
   SidebarRail,
-} from "@/components/ui/sidebar"
-import { getCookie } from "@/lib/cookies"
-import { LayoutProvider } from "@/context/layout-provider"
+} from "@/components/ui/sidebar";
+import { getCookie } from "@/lib/cookies";
+import { LayoutProvider } from "@/context/layout-provider";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
-import { sidebarData } from "@/components/layout/data/sidebar-data"
-import { NavGroup } from "@/components/layout/nav-group"
-import { Header } from "@/components/layout/header"
-import { ThemeProvider } from "@/context/theme-provider"
-import Link from "next/link"
-import { PawPrint } from "lucide-react"
+import { sidebarData } from "@/components/layout/data/sidebar-data";
+import { NavGroup } from "@/components/layout/nav-group";
+import { Header } from "@/components/layout/header";
+import { ThemeProvider } from "@/context/theme-provider";
+import Link from "next/link";
+import { PawPrint } from "lucide-react";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
-})
+});
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
-})
+});
 
 // export const metadata: Metadata = {
 //   title: "Create Next App",
@@ -38,9 +39,10 @@ const geistMono = Geist_Mono({
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode
+  children: React.ReactNode;
 }>) {
-  const defaultOpen = getCookie("sidebar_state") !== "false"
+  const defaultOpen = getCookie("sidebar_state") !== "false";
+  const queryClient = new QueryClient()
   return (
     <html lang="en">
       <body
@@ -49,36 +51,38 @@ export default function RootLayout({
         <ThemeProvider>
           <SidebarProvider defaultOpen={defaultOpen}>
             <LayoutProvider>
-              <div className="flex min-h-screen min-w-screen">
-                <AppSidebar>
-                  <SidebarHeader>
-                    <div className="flex items-center">
-                      <Link
-                        href="/"
-                        className="flex flex-col items-center gap-1"
-                      >
-                        <PawPrint size={32} className="text-primary" />
-                      </Link>
-                    </div>
-                  </SidebarHeader>
-                  <SidebarContent>
-                    {sidebarData.navGroups.map((props) => (
-                      <NavGroup key={props.title} {...props} />
-                    ))}
-                  </SidebarContent>
-                  <SidebarFooter></SidebarFooter>
-                  <SidebarRail />
-                </AppSidebar>
-                <div className="flex flex-col flex-1 w-full">
-                  <Header />
+              <QueryClientProvider client={queryClient}>
+                <div className="flex min-h-screen min-w-screen">
+                  <AppSidebar>
+                    <SidebarHeader>
+                      <div className="flex items-center">
+                        <Link
+                          href="/"
+                          className="flex flex-col items-center gap-1"
+                        >
+                          <PawPrint size={32} className="text-primary" />
+                        </Link>
+                      </div>
+                    </SidebarHeader>
+                    <SidebarContent>
+                      {sidebarData.navGroups.map((props) => (
+                        <NavGroup key={props.title} {...props} />
+                      ))}
+                    </SidebarContent>
+                    <SidebarFooter></SidebarFooter>
+                    <SidebarRail />
+                  </AppSidebar>
+                  <div className="flex flex-col flex-1 w-full">
+                    <Header />
 
-                  <main className="flex-1">{children}</main>
+                    <main className="flex-1">{children}</main>
+                  </div>
                 </div>
-              </div>
+              </QueryClientProvider>
             </LayoutProvider>
           </SidebarProvider>
         </ThemeProvider>
       </body>
     </html>
-  )
+  );
 }
