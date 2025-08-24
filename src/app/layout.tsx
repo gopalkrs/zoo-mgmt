@@ -19,6 +19,9 @@ import { Header } from "@/components/layout/header"
 import { ThemeProvider } from "@/context/theme-provider"
 import Link from "next/link"
 import { PawPrint } from "lucide-react"
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
+
+const queryClient = new QueryClient();
 
 const geistSans = Geist({
   variable: "--font-geist-sans",

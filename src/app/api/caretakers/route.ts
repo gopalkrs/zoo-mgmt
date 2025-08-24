@@ -29,11 +29,6 @@ export async function POST(req: Request): Promise<Response> {
  * GET API Route - Fetch all CareTakers
  *
  * @returns JSON response with success status and list of CareTakers
- *
- * Flow:
- * 1. Call CareTakerService.getAllCareTakers() to fetch records from DB
- * 2. Return success response with result
- * 3. Handle and return errors gracefully
  */
 export async function GET(): Promise<Response> {
   try {
