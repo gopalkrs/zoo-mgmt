@@ -21,6 +21,7 @@ import {
   AudioWaveform,
   Command,
   GalleryVerticalEnd,
+  RabbitIcon,
 } from "lucide-react"
 import { SidebarData } from "../types"
 // import { ClerkLogo } from "@/assets/clerk-logo"
@@ -59,9 +60,9 @@ export const sidebarData: SidebarData = {
           icon: LayoutDashboard,
         },
         {
-          title: "Tasks",
-          url: "/tasks",
-          icon: ListTodo,
+          title: "Animals",
+          url: "/animals",
+          icon: RabbitIcon,
         },
         {
           title: "Apps",

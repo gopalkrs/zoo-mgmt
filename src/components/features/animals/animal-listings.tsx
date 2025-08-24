@@ -1,14 +1,12 @@
 "use client"
 import { AnimalTable } from "./animals-table"
 import { columns } from "./animals-table/columns"
-import { Animal } from "@/types"
 import { getAnimals } from "@/store/animals-api"
-type AnimalListingPage = {}
+import { Animal } from "@/types"
 
-export default function AnimalListingPage({}: AnimalListingPage) {
+export default function AnimalListingPage() {
   const { data: animalsData, isLoading, error } = getAnimals()
 
-  console.log("animals ==>", animalsData?.result)
   const animals: Animal[] = animalsData?.result || []
 
   if (isLoading) return <div>Loading...</div>
@@ -16,10 +14,9 @@ export default function AnimalListingPage({}: AnimalListingPage) {
 
   const totalAnimals = animals.length
 
-  if (isLoading) return <div>Loading...</div>
-  console.log("animals ==>", animals)
-  console.log("columns ==>", columns)
   return (
-    <AnimalTable data={animals} totalItems={totalAnimals} columns={columns} />
+    <div className="container mx-auto py-10">
+      <AnimalTable data={animals} totalItems={totalAnimals} columns={columns} />
+    </div>
   )
 }

@@ -290,7 +290,6 @@ export function useDataTable<TData>(props: UseDataTableProps<TData>) {
     manualPagination: true,
     manualSorting: true,
     manualFiltering: true,
-    
   })
 
   return { table, shallow, debounceMs, throttleMs }
