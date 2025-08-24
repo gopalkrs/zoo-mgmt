@@ -13,4 +13,4 @@ const careTakerSchema = new mongoose.Schema({
     ]
 })
 
-export const careTakerModel = mongoose.model("CareTaker", careTakerSchema);
+export const careTakerModel = mongoose.models.CareTaker ||mongoose.model("CareTaker", careTakerSchema);

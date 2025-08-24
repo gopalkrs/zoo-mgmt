@@ -29,7 +29,7 @@ export default async function Page(props: pageProps) {
         <div className="flex items-start justify-between">
           <Heading title="Animals" description="Manage Zoo Animals" />
           <Link
-            href="/dashboard/animal/new"
+            href="/animals/new"
             className={cn(buttonVariants(), "text-xs md:text-sm")}
           >
             <PlusIcon className="mr-2 h-4 w-4" /> Add New
