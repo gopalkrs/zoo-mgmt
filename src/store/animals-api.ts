@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query"
 
-export function getAnimals() {
+export function useAnimals() {
   return useQuery({
     queryKey: ["animals"],
     queryFn: async () => {

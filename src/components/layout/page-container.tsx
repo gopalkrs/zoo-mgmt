@@ -1,5 +1,4 @@
 import React from "react"
-import { ScrollArea } from "../ui/scroll-area"
 
 export default function PageContainer({
   children,

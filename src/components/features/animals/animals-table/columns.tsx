@@ -9,7 +9,6 @@ import {
   Calendar,
   MapPin,
   User,
-  Users,
   Clock,
   HomeIcon,
 } from "lucide-react"
@@ -26,7 +25,7 @@ const formatDate = (date: Date | string | undefined | null): string => {
 }
 
 // Helper function to handle undefined/null values
-const formatValue = (value: any): string => {
+const formatValue = (value: unknown): string => {
   if (value === undefined || value === null || value === "") return "--"
   return String(value)
 }
