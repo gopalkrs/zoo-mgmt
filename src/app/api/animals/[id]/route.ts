@@ -10,10 +10,10 @@ import { AnimalService } from "@/app/services"
  */
 export async function PATCH(
   req: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ): Promise<Response> {
   try {
-    const { id } = params
+    const { id } = await params
     const body = await req.json()
 
     const result = await AnimalService.updateAnimalById({ _id: id, ...body })
@@ -44,10 +44,10 @@ export async function PATCH(
  */
 export async function DELETE(
   req: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ): Promise<Response> {
   try {
-    const { id } = params
+    const { id } = await params
 
     const result = await AnimalService.deleteAnimalById(id)
 

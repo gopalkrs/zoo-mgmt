@@ -1,4 +1,4 @@
-import { configDotenv } from "dotenv"
+// import { configDotenv } from "dotenv"
 import mongoose from "mongoose"
 
 let isConnected = false
