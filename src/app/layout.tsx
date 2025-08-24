@@ -25,7 +25,7 @@ const queryClient = new QueryClient()
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
-})
+});
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
@@ -39,9 +39,10 @@ const geistMono = Geist_Mono({
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode
+  children: React.ReactNode;
 }>) {
-  const defaultOpen = getCookie("sidebar_state") !== "false"
+  const defaultOpen = getCookie("sidebar_state") !== "false";
+  const queryClient = new QueryClient()
   return (
     <html lang="en">
       <body
@@ -86,5 +87,5 @@ export default function RootLayout({
         </QueryClientProvider>
       </body>
     </html>
-  )
+  );
 }
