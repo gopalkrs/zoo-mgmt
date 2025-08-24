@@ -1,4 +1,4 @@
-import { AnimalService } from "@/app/services";
+import { AnimalService } from "@/app/services"
 
 /**
  * PATCH /api/animals/[id]
@@ -10,27 +10,27 @@ import { AnimalService } from "@/app/services";
  */
 export async function PATCH(
   req: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ): Promise<Response> {
   try {
-    const { id } = params;
-    const body = await req.json();
+    const { id } = await params
+    const body = await req.json()
 
-    const result = await AnimalService.updateAnimalById({ id, ...body });
+    const result = await AnimalService.updateAnimalById({ _id: id, ...body })
 
-    return Response.json({ success: true, result });
+    return Response.json({ success: true, result })
   } catch (err: unknown) {
     if (err instanceof Error) {
-      console.error("Error:", err.message);
+      console.error("Error:", err.message)
       return Response.json(
         { success: false, error: err.message },
         { status: 500 }
-      );
+      )
     }
     return Response.json(
       { success: false, error: "Unknown error" },
       { status: 500 }
-    );
+    )
   }
 }
 
@@ -44,25 +44,25 @@ export async function PATCH(
  */
 export async function DELETE(
   req: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ): Promise<Response> {
   try {
-    const { id } = params;
+    const { id } = await params
 
-    const result = await AnimalService.deleteAnimalById(id);
+    const result = await AnimalService.deleteAnimalById(id)
 
-    return Response.json({ success: true, result });
+    return Response.json({ success: true, result })
   } catch (err: unknown) {
     if (err instanceof Error) {
-      console.error("Error:", err.message);
+      console.error("Error:", err.message)
       return Response.json(
         { success: false, error: err.message },
         { status: 500 }
-      );
+      )
     }
     return Response.json(
       { success: false, error: "Unknown error" },
       { status: 500 }
-    );
+    )
   }
 }

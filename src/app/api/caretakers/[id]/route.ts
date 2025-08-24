@@ -1,5 +1,5 @@
-import { CareTakerService } from "@/app/services";
-import { handleError } from "@/utils";
+import { CareTakerService } from "@/app/services"
+import { handleError } from "@/utils"
 
 /**
  * PATCH Handler - Update CareTaker by ID
@@ -25,20 +25,20 @@ import { handleError } from "@/utils";
  */
 export async function PATCH(
   req: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ): Promise<Response> {
   try {
-    const { id } = params;
+    const { id } = await params
 
-    const body = await req.json();
+    const body = await req.json()
 
     const result = await CareTakerService.updateCareTakerById({
-      id,
+      _id: id,
       ...body,
-    });
+    })
 
-    return Response.json({ success: true, result });
+    return Response.json({ success: true, result })
   } catch (err: unknown) {
-    return handleError(err);
+    return handleError(err)
   }
 }

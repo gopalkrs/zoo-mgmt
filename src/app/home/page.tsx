@@ -1,12 +1,13 @@
-import { Button } from "@/components/ui/button";
-import React from "react";
+"use client"
+import { Button } from "@/components/ui/button"
+import React from "react"
 
 const page = () => {
   return (
     <div>
-      <Button>Hello</Button>
+      <Button>animals</Button>
     </div>
-  );
-};
+  )
+}
 
-export default page;
+export default page
