@@ -1,6 +1,5 @@
 "use client";
 
-import { FileUploader } from "@/components/file-uploader";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
@@ -127,7 +126,7 @@ export default function ProductForm() {
               <FormField
                 control={form.control}
                 name="name"
-                render={({ field }: { field: any }) => (
+                render={({ field }) => (
                   <FormItem>
                     <FormLabel>Animal Name</FormLabel>
                     <FormControl>
@@ -140,11 +139,21 @@ export default function ProductForm() {
               <FormField
                 control={form.control}
                 name="dob"
-                render={({ field }: { field: any }) => (
+                render={({ field }) => (
                   <FormItem>
                     <FormLabel>DOB</FormLabel>
                     <FormControl>
-                      <Input type="date" {...field} />
+                      <Input
+                        type="date"
+                        value={
+                          field.value
+                            ? new Date(field.value).toISOString().split("T")[0]
+                            : ""
+                        }
+                        onChange={(e) =>
+                          field.onChange(new Date(e.target.value))
+                        }
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -153,7 +162,7 @@ export default function ProductForm() {
               <FormField
                 control={form.control}
                 name="category"
-                render={({ field }: { field: any }) => (
+                render={({ field }) => (
                   <FormItem>
                     <FormLabel>Category</FormLabel>
                     <Select onValueChange={field.onChange} value={field.value}>
@@ -182,7 +191,7 @@ export default function ProductForm() {
               <FormField
                 control={form.control}
                 name="gender"
-                render={({ field }: { field: any }) => (
+                render={({ field }) => (
                   <FormItem>
                     <FormLabel>Gender</FormLabel>
                     <Select onValueChange={field.onChange} value={field.value}>
@@ -203,7 +212,7 @@ export default function ProductForm() {
               <FormField
                 control={form.control}
                 name="origin"
-                render={({ field }: { field: any }) => (
+                render={({ field }) => (
                   <FormItem>
                     <FormLabel>Origin</FormLabel>
                     <FormControl>

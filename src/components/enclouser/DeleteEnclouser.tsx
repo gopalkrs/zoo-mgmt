@@ -64,7 +64,7 @@ export const DeleteEnclosure: React.FC<DeleteEnclosureProps> = ({
     mutationFn: deleteEnclosure,
     onSuccess: (data) => {
       // Optimistic update
-      queryClient.setQueryData(["enclosures"], (oldData: any) => {
+      queryClient.setQueryData(["enclosures"], (oldData: unknown) => {
         if (!oldData) return oldData;
         return {
           ...oldData,
@@ -128,7 +128,7 @@ export const DeleteEnclosure: React.FC<DeleteEnclosureProps> = ({
             This action cannot be undone. This will permanently delete the
             enclosure
             {enclosureName && (
-              <span className="font-medium"> "{enclosureName}"</span>
+              <span className="font-medium"> {enclosureName}</span>
             )}
             and remove all associated data.
           </DialogDescription>
