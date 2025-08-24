@@ -64,7 +64,7 @@ export const DeleteEnclosure: React.FC<DeleteEnclosureProps> = ({
     mutationFn: deleteEnclosure,
     onSuccess: (data) => {
       // Optimistic update
-      queryClient.setQueryData(["enclosures"], (oldData: unknown) => {
+      queryClient.setQueryData(["enclosures"], (oldData) => {
         if (!oldData) return oldData;
         return {
           ...oldData,
