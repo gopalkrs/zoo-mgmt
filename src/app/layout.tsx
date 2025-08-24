@@ -12,15 +12,14 @@ import {
 } from "@/components/ui/sidebar"
 import { getCookie } from "@/lib/cookies"
 import { LayoutProvider } from "@/context/layout-provider"
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
 import { sidebarData } from "@/components/layout/data/sidebar-data"
 import { NavGroup } from "@/components/layout/nav-group"
 import { Header } from "@/components/layout/header"
 import { ThemeProvider } from "@/context/theme-provider"
 import Link from "next/link"
 import { PawPrint } from "lucide-react"
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
 
-const queryClient = new QueryClient()
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -41,6 +40,7 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
   const defaultOpen = getCookie("sidebar_state") !== "false";
   const queryClient = new QueryClient()
   return (
