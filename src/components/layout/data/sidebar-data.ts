@@ -8,7 +8,6 @@ import {
   HelpCircle,
   Lock,
   Bell,
-  Package,
   Palette,
   ServerOff,
   Settings,
@@ -16,11 +15,11 @@ import {
   UserCog,
   UserX,
   Users,
-  MessagesSquare,
   ShieldCheck,
   AudioWaveform,
   Command,
   GalleryVerticalEnd,
+  Ticket,
 } from "lucide-react"
 import { SidebarData } from "../types"
 // import { ClerkLogo } from "@/assets/clerk-logo"
@@ -64,15 +63,9 @@ export const sidebarData: SidebarData = {
           icon: ListTodo,
         },
         {
-          title: "Apps",
-          url: "/apps",
-          icon: Package,
-        },
-        {
-          title: "Chats",
-          url: "/chats",
-          badge: "3",
-          icon: MessagesSquare,
+          title: "Tickets",
+          url: "/tickets",
+          icon: Ticket
         },
         {
           title: "Users",
