@@ -21,6 +21,7 @@ import {
   GalleryVerticalEnd,
   RabbitIcon,
   Ticket,
+  UserCheck,
 } from "lucide-react"
 import { SidebarData } from "../types"
 // import { ClerkLogo } from "@/assets/clerk-logo"
@@ -64,9 +65,14 @@ export const sidebarData: SidebarData = {
           icon: RabbitIcon,
         },
         {
+          title: "CareTakers",
+          url: "/caretakers",
+          icon: UserCheck,
+        },
+        {
           title: "Tickets",
           url: "/tickets",
-          icon: Ticket
+          icon: Ticket,
         },
         {
           title: "Users",

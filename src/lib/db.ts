@@ -7,10 +7,10 @@ export async function connectDB() {
   if (isConnected) return
 
   try {
-    const db = await mongoose.connect(process.env.MONGO_URI || "");
-    isConnected = db.connections[0].readyState === 1;
-    console.log("MongoDB Connected");
+    const db = await mongoose.connect(process.env.NEXT_PUBLIC_MONGO_URI || "")
+    isConnected = db.connections[0].readyState === 1
+    console.log("MongoDB Connected")
   } catch (error) {
-    console.error("MongoDB Connection Error:", error);
+    console.error("MongoDB Connection Error:", error)
   }
 }

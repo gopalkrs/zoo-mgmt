@@ -1,7 +1,9 @@
-import mongoose from "mongoose";
-
+interface CareTakerAnimal {
+  name: string
+  id: string
+}
 export interface CareTaker {
-  id?: mongoose.Types.ObjectId;
-  name: string;
-  assignedAnimals: mongoose.Types.ObjectId[]; 
+  _id?: string
+  name: string
+  assignedAnimals: CareTakerAnimal[]
 }
