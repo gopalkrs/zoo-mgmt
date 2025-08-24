@@ -1,12 +1,36 @@
 "use client";
-import { Calendar, Camera, Minus, Plus, Shield, Star, Users } from "lucide-react";
+import { useCreateTicket } from "@/queries/create-ticket-api";
+import { Calendar, Minus, Plus, Shield, Star, Users } from "lucide-react";
+import { useRouter } from "next/navigation";
 import React, { useState } from "react";
-
+import { useTicketStore } from "@/store/ticket-store";
 
 type TicketType = "adult" | "child";
-
 const FirstStep = () => {
+  const router = useRouter();
+  const setTicket = useTicketStore((state)=>state.setTicket);
   const [selectedDate, setSelectedDate] = useState("");
+
+  const { mutate: createTicket } = useCreateTicket();
+
+  const handleCreate = () => {
+    createTicket(
+      {
+        numberOfAdults: ticketCounts.adult,
+        numberOfChildren: ticketCounts.child,
+        totalPrice: calculateTotal(),
+        dateOfVisit: new Date(selectedDate),
+      },
+      {
+        onSuccess: (data) => {
+          console.log("Ticket created successfully:", data);
+          setTicket(data?.ticket);
+          router.push("/tickets/ticket-success");
+          router.refresh();
+        },
+      }
+    );
+  };
 
   const ticketTypes: {
     type: TicketType;
@@ -16,13 +40,13 @@ const FirstStep = () => {
   }[] = [
     {
       type: "adult",
-      label: "Adult (13+)",
+      label: "Adult (16+)",
       price: 100,
       description: "General admission",
     },
     {
       type: "child",
-      label: "Child (3-12)",
+      label: "Child (3-15)",
       price: 50,
       description: "General admission",
     },
@@ -33,12 +57,12 @@ const FirstStep = () => {
     child: 0,
   });
 
-const updateTicketCount = (type: TicketType, change: number) => {
-    setTicketCounts(prev => ({
-        ...prev,
-        [type]: Math.max(0, prev[type] + change)
+  const updateTicketCount = (type: TicketType, change: number) => {
+    setTicketCounts((prev) => ({
+      ...prev,
+      [type]: Math.max(0, prev[type] + change),
     }));
-};
+  };
 
   const calculateTotal = () => {
     const ticketTotal = ticketTypes.reduce(
@@ -48,24 +72,12 @@ const updateTicketCount = (type: TicketType, change: number) => {
     return ticketTotal;
   };
 
-   const getTotalTickets = () => {
+  const getTotalTickets = () => {
     return Object.values(ticketCounts).reduce((sum, count) => sum + count, 0);
   };
 
   return (
     <div className="space-y-8">
-      <header className="bg-green-500 shadow-sm">
-        <div className="max-w-6xl mx-auto px-4 py-6">
-          <div className="text-center">
-            <h1 className="text-4xl font-bold text-gray-100 mb-2">
-              Wild Adventure Zoo
-            </h1>
-            <p className="text-lg text-gray-200">
-              Book Your Unforgettable Experience
-            </p>
-          </div>
-        </div>
-      </header>
       <div className="max-w-6xl mx-auto px-4 py-8">
         <div className="grid lg:grid-cols-3 gap-8">
           {/* Main Booking Form */}
@@ -199,7 +211,8 @@ const updateTicketCount = (type: TicketType, change: number) => {
                 {/* Book Button */}
                 <button
                   disabled={!selectedDate || getTotalTickets() === 0}
-                  className="w-full bg-gradient-to-r from-green-600 to-orange-700 text-white py-4 rounded-xl font-semibold text-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+                  className="w-full bg-gradient-to-r from-green-600 to-orange-700 text-white py-4 rounded-xl font-semibold text-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all disabled:opacity-50 cursor-pointer disabled:transform-none"
+                  onClick={handleCreate}
                 >
                   Book Now
                 </button>
