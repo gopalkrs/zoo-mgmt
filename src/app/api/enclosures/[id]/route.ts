@@ -6,9 +6,9 @@ const enclosureServices = new EnclosureServices();
 
 export async function DELETE(
     req: NextRequest,
-    context: { params: { id: string } }) {
+    context: { params: Promise<{ id: string }> }) {
     try{
-        const { id } = context.params;
+        const { id } = await context.params;
         await connectDB();
         const deletedEnclosure = await enclosureServices.deleteEnclosureById(id);
         if(!deletedEnclosure){
@@ -29,9 +29,9 @@ export async function DELETE(
 
 export async function PUT(
     req: NextRequest, 
-    context: { params: { id: string } }) {
+    context: { params: Promise<{ id: string }> }) {
     try{
-        const { id } = context.params;
+        const { id } = await context.params;
         await connectDB();
         const body = await req.json();
         const updatedEnclosure = await enclosureServices.updateEnclosureById(id, body);

@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query"
 
-export function getCareTakers() {
+export function useCareTakers() {
   return useQuery({
     queryKey: ["caretakers"],
     queryFn: async () => {

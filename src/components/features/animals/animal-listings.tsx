@@ -1,11 +1,11 @@
 "use client"
 import { AnimalTable } from "./animals-table"
 import { columns } from "./animals-table/columns"
-import { getAnimals } from "@/store/animals-api"
+import { useAnimals } from "@/store/animals-api"
 import { Animal } from "@/types"
 
 export default function AnimalListingPage() {
-  const { data: animalsData, isLoading, error } = getAnimals()
+  const { data: animalsData, isLoading, error } = useAnimals()
 
   const animals: Animal[] = animalsData?.result || []
 

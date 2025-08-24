@@ -1,11 +1,11 @@
 "use client"
 import { CareTakerTable } from "./caretakers-table"
 import { columns } from "./caretakers-table/columns"
-import { getCareTakers } from "@/store/caretakers-api"
+import { useCareTakers } from "@/store/caretakers-api"
 import { CareTaker } from "@/types/CareTaker"
 
 export default function CareTakerListingPage() {
-  const { data: caretakersData, isLoading, error } = getCareTakers()
+  const { data: caretakersData, isLoading, error } = useCareTakers()
 
   const caretakers: CareTaker[] = caretakersData?.result || []
 

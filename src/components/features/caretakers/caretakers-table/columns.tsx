@@ -5,7 +5,7 @@ import { Column, ColumnDef } from "@tanstack/react-table"
 import { User } from "lucide-react"
 
 // Helper function to handle undefined/null values
-const formatValue = (value: any): string => {
+const formatValue = (value: unknown): string => {
   if (value === undefined || value === null || value === "") return "--"
   return String(value)
 }

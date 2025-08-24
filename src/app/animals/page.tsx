@@ -4,7 +4,6 @@ import { buttonVariants } from "@/components/ui/button"
 import { Heading } from "@/components/ui/heading"
 import { Separator } from "@/components/ui/separator"
 import { DataTableSkeleton } from "@/components/ui/table/data-table-sekeleton"
-import { searchParamsCache, serialize } from "@/lib/search-params"
 import { cn } from "@/lib/utils"
 import { PlusIcon } from "lucide-react"
 import Link from "next/link"
@@ -16,10 +15,9 @@ type pageProps = {
 }
 
 export default async function Page(props: pageProps) {
-  const searchParams = await props.searchParams
   // Allow nested RSCs to access the search params (in a type-safe way)
   // searchParamsCache.parse(searchParams)
-
+  console.log("props ==>", props)
   // This key is used for invoke suspense if any of the search params changed (used for filters).
   // const key = serialize({ ...searchParams });
 
