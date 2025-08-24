@@ -1,10 +1,10 @@
-import { configDotenv } from "dotenv";
-import mongoose from "mongoose";
+import { configDotenv } from "dotenv"
+import mongoose from "mongoose"
 
-let isConnected = false;
-configDotenv();
+let isConnected = false
+// configDotenv()
 export async function connectDB() {
-  if (isConnected) return;
+  if (isConnected) return
 
   try {
     const db = await mongoose.connect(process.env.MONGO_URI || "");

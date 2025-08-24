@@ -1,4 +1,4 @@
-import { AnimalService } from "@/app/services";
+import { AnimalService } from "@/app/services"
 
 /**
  * PATCH /api/animals/[id]
@@ -13,24 +13,24 @@ export async function PATCH(
   { params }: { params: { id: string } }
 ): Promise<Response> {
   try {
-    const { id } = params;
-    const body = await req.json();
+    const { id } = params
+    const body = await req.json()
 
-    const result = await AnimalService.updateAnimalById({ id, ...body });
+    const result = await AnimalService.updateAnimalById({ _id: id, ...body })
 
-    return Response.json({ success: true, result });
+    return Response.json({ success: true, result })
   } catch (err: unknown) {
     if (err instanceof Error) {
-      console.error("Error:", err.message);
+      console.error("Error:", err.message)
       return Response.json(
         { success: false, error: err.message },
         { status: 500 }
-      );
+      )
     }
     return Response.json(
       { success: false, error: "Unknown error" },
       { status: 500 }
-    );
+    )
   }
 }
 
@@ -47,22 +47,22 @@ export async function DELETE(
   { params }: { params: { id: string } }
 ): Promise<Response> {
   try {
-    const { id } = params;
+    const { id } = params
 
-    const result = await AnimalService.deleteAnimalById(id);
+    const result = await AnimalService.deleteAnimalById(id)
 
-    return Response.json({ success: true, result });
+    return Response.json({ success: true, result })
   } catch (err: unknown) {
     if (err instanceof Error) {
-      console.error("Error:", err.message);
+      console.error("Error:", err.message)
       return Response.json(
         { success: false, error: err.message },
         { status: 500 }
-      );
+      )
     }
     return Response.json(
       { success: false, error: "Unknown error" },
       { status: 500 }
-    );
+    )
   }
 }
