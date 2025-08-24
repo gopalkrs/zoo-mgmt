@@ -1,5 +1,5 @@
 "use client";
-import { Calendar, Camera, Minus, Plus, Shield, Star, Users } from "lucide-react";
+import { Calendar, Minus, Plus, Shield, Star, Users } from "lucide-react";
 import React, { useState } from "react";
 
 
