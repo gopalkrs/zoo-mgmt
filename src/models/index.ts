@@ -1,3 +1,5 @@
 export * from "./animal.model"
 export * from "./careTaker.model"
 export * from "./ticket.model"
+export * from "./schedule.model"
+export * from "./enclosure.model"
